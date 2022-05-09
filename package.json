@@ -1,5 +1,5 @@
 {
-  "name": "framework",
+  "name": "@darpanvadher/framework",
   "version": "1.0.0",
   "description": "The Custom Node Js Framework",
   "main": "index.js",
