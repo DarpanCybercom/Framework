@@ -3,8 +3,11 @@
   "version": "1.0.0",
   "description": "The Custom Node Js Framework",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "node core/postInstall.js"
   },
   "repository": {
     "type": "git",
@@ -18,5 +21,17 @@
     "Vadher"
   ],
   "author": "Darpan Vadher",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "chalk": "^5.0.1",
+    "cookie-parser": "^1.4.6",
+    "csurf": "^1.11.0",
+    "express": "^4.18.1",
+    "inquirer": "^8.2.4",
+    "portscanner": "^2.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
 }
