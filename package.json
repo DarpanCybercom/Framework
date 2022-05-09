@@ -18,16 +18,5 @@
     "Vadher"
   ],
   "author": "Darpan Vadher",
-  "license": "ISC",
-  "dependencies": {
-    "arg": "^5.0.1",
-    "esm": "^3.2.25",
-    "inquirer": "^8.2.4"
-  },
-  "bin":{
-    "Framework":"bin/framework"
-  },
-  "publishConfig": {
-    "access": "public"
-  }
+  "license": "ISC"
 }
