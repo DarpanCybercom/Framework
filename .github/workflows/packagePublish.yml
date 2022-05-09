@@ -1,0 +1,23 @@
+name: Publish NPM Packages
+
+on:
+  push:
+    branches:
+      - custom_command
+
+jobs:
+  release:
+    name: Publish | Npm Packages
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout | NPM Packages 
+        uses: actions/checkout@v3
+      - name: Set Node | NPM Packages
+        uses: actions/setup-node@v3
+        with: 
+          node-version: 14
+          registry-url: https://registry.npmjs.org/
+      - name: Publish | NPM Packages
+        run: npm publish --access public
+        env: 
+            NODE_AUTH_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN}}

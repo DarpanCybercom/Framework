@@ -1,0 +1,33 @@
+{
+  "name": "framework",
+  "version": "1.0.0",
+  "description": "The Custom Node Js Framework",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@DarpanCybercom:DarpanCybercom/Framework.git"
+  },
+  "keywords": [
+    "NodeJs",
+    "NodeJsFramework",
+    "Framework",
+    "Darpan",
+    "Vadher"
+  ],
+  "author": "Darpan Vadher",
+  "license": "ISC",
+  "dependencies": {
+    "arg": "^5.0.1",
+    "esm": "^3.2.25",
+    "inquirer": "^8.2.4"
+  },
+  "bin":{
+    "Framework":"bin/framework"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
