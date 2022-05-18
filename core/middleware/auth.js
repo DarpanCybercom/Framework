@@ -1,4 +1,4 @@
-const chalk = require("chalk");
+const chalk = require('colors/safe');
 const jwt = require('jsonwebtoken');
 
 exports.tokenValidate = (req, res, next) => {

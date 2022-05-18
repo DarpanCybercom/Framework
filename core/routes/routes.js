@@ -1,10 +1,22 @@
-const path = require("path");
-const express = require("express");
-const fs = require("fs");
-const chalk = require("chalk");
+import express from 'express';
+import path from 'path';
+import fs from 'fs';
+
+
 let router = express.Router();
 
-const coreRoutes = require("./routes/coreApiRoutes");
+import coreRouter from './coreApiRoutes.js';
+
+
+
+
+export default router;
+
+
+
+/*
+
+
 const ModuleFolderName = process.env.MODULE_FOLDERNAME;
 
 
@@ -97,3 +109,4 @@ framework.modules.forEach((element) => {
 
 
 module.exports = router;
+ */

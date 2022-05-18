@@ -1,7 +1,7 @@
 const express = require("express");
 const path = require("path");
 const fs = require("fs");
-const chalk = require("chalk");
+const chalk = require('colors/safe')
 const router = express.Router();
 
 let routepath  = [];

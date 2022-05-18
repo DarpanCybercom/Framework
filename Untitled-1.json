@@ -1,0 +1,31 @@
+{
+        "method": "get",
+        "path": "/",
+        "controller": "home.index",
+        "middlewares": [
+            "auth.validate"
+        ],
+        "roles":[],
+        "file-upload":
+            [{
+                "validations":{
+                    "max-size": "10mb",
+                    "allowed-types": ["image/jpeg", "image/png", "image/gif"],
+                    "allowed-extensions": ["jpg", "jpeg", "png", "gif"],
+                    "validation-functions":["file.function",""],
+                    "global-validation-functions":["file.function",""],
+                    "file-count":1,
+                    "required":true
+                },
+            
+                "fields":["a","b",{"name":"c","upload-path":".c/uploads"}],
+                "upload-path": "./uploads",
+                "custom-middleware":{"name":"file.func","global":true}
+            }]
+}
+
+
+const finalvalidation = {
+    ...corevalidation,...(routervalidation || {} ),...(filedvalidation || {})
+    
+}

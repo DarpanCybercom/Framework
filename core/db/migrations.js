@@ -7,7 +7,7 @@ const ModuleFolderName = 'api';
 const DataBaseConfig = require(path.join(path.dirname(__dirname),'../','config/appConfig.json'));
 
 
-const db =  require(path.join(path.dirname(__dirname),'../',DataBaseConfig.dbMigrationCofig.dbModelConfigFile));
+const db =  require(path.join(path.dirname(__dirname),'../',DataBaseConfig.DbMigrationCofig.dbModelConfigFile));
 
 
 var sequelize = db.sequelize;
@@ -29,7 +29,7 @@ modules.forEach(element => {
   
 
 	var moduleMigrationPath = ModuleFolderName+"/"+element+"/migrations/*.js";
-
+ 
 	moduleMigration.push(moduleMigrationPath);
 
 

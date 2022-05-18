@@ -1,0 +1,27 @@
+[
+        {
+            "method": "post",
+            "path": "/add",
+            "controller": "holidaycontroller.addDetails",
+            "middlewares": ["holiday.inputCheck", "holiday.validateDate"],
+            "userRole": [],
+            "global": false,
+            "protected": false,
+            "fileupload":
+            [{
+                "validations":{
+                    "max_size": "2",
+                    "allowed_types": ["image/jpeg", "image/png", "image/gif"],
+                    "allowed_extensions": ["jpg", "jpeg", "png", "gif"],
+                    "validation_functions":["file.function",""],
+                    "global_validation_functions":["file.function",""],
+                    "file_count":2,
+                    "required":true,
+                    "upload_path": "uploads"
+                },
+                "fields":[{"name":"a","validations":{}},{"name":"b","validations":{"max_size":"5","upload_path": "runinpublic"}}],
+                "custom-middleware":{"name":"file.func","global":true}
+            }]
+
+        }
+]
