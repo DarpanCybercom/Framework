@@ -23,10 +23,11 @@ const warning = chalk.yellow; */
 /* const { addModule } = require('./addModule');
 const { addAuth } = require('./addAuth');
 const { addModel } = require('./addModel');
-const { addFileUpload } = require('./addFileUpload');
- */
+*/
+ 
 const { help } = require('./help');
 const { init } = require('./init'); 
+const { addFileUpload } = require('./addFileUpload');
 
 /* Custom Command Import #END# */
 
@@ -96,7 +97,7 @@ module.exports.cli = async (args) => {
                     break;
                 
                 case "addFileUpload":
-                        addFileUpload(CommandArg);
+                        addFileUpload();
                     break;
                     
                 default:
