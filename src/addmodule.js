@@ -11,6 +11,7 @@ const ConfigFilePath = path.join(__dirname,'config',ConfigFileName);
 const CheckConfigFile = () => {
 
     if(!fs.existsSync(ConfigFilePath)){
+        console.log(ConfigFilePath);
         console.log("Config File Not Found");
         return false;
     }
