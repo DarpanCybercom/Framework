@@ -7,14 +7,37 @@ const  { exec }   = require("child_process");
 const ConfigFileName = "appConfig.json";
 const ConfigFilePath = path.join(__dirname,'config',ConfigFileName);
 
+const CheckConfigFile = () => {
+
+    if(!fs.existsSync(ConfigFilePath)){
+        console.log("Config File Not Found");
+        return false;
+    }
+    return true;
+};
 
 
 module.exports.addModel = async () => {
 
     console.log("File Upload Module Intializing.....");
     console.log("File Upload Module Intialized");
-    console.log(ConfigFilePath);
-    let FolderName = "api";
+    
+    var IsFileAvailable = CheckConfigFile();
+
+    if(!IsFileAvailable){
+
+        console.log("Config File Not Found");
+        return;
+    }
+
+    console.log("Config File Found");
+
+    var configFile = fs.readFileSync(ConfigFilePath);
+    var config = JSON.parse(configFile);
+
+    console.log("Config File Loaded");
+
+    console.log(config.AppConfig.apiFolderName);
 
     
 };
