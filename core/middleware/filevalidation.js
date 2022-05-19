@@ -34,35 +34,13 @@ var storage = multer.diskStorage({
   }).single('File');
 
 exports.filevalidation = (req, res, next) => {
-    upload(req, res, function (err) {
-        if (err instanceof multer.MulterError) {
-          // A Multer error occurred when uploading.
-          res.send(err)
-        } else if (err) {
-          // An unknown error occurred when uploading.
-          res.send(err)
-        }
-        console.log(req.file)
-        // Everything went fine.
-      })
 
+      /* console.log(req.files);
 
-      console.log(req.body);      
+      console.log(req.body);   */        
 
-   /*  if(req.files){
-        if(req.files.file){
-            if(req.files.file.mimetype == "image/jpeg" || req.files.file.mimetype == "image/png" || req.files.file.mimetype == "image/gif"){
-                next();
-            }else{
-                res.json({status : "error", message : "file type is not valid"});
-            }
-        }else{
-            res.json({status : "error", message : "file is not valid"});
-        }
-    }else{
-        res.json({status : "error", message : "file is not valid"});
-    } */
-    
+      console.log(req.fileValidationValue);
+
 
 }
 

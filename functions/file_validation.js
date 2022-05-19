@@ -35,6 +35,7 @@ exports.validation = async ( FileUploadOBject) => {
 		field_validation_array[i.name]=file_object
 		arrayfileds.push({name:i.name,maxCount:file_object.file_count})
 
+	
 		
 	}
 	// console.log(arrayfileds)
@@ -46,7 +47,10 @@ exports.validation = async ( FileUploadOBject) => {
 			/* console.log(file)
 			console.log(field_validation_array[file.fieldname].upload_path)
 			 */req.filesubmission = true
-			cb(null, path.join(__dirname, `../public/${field_validation_array[file.fieldname].upload_path}/`))
+				req.fileValidationValue = field_validation_array;
+				  
+			 cb(null, path.join(__dirname, `../public/${field_validation_array[file.fieldname].upload_path}/`))
+
 		},
 		filename: (req, file, cb) => {
 			console.log("-------%%%--------")

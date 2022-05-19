@@ -105,8 +105,8 @@ framework.modules.forEach((element) => {
 				
 				/* console.log(routesPath.fileupload); */
 
-				/* 
-					mid.push(framework.middleware.globalCoreMiddleware.filevalidation.filevalidation); */
+				
+				mid.push(framework.middleware.globalCoreMiddleware.filevalidation.filevalidation);
 
 				
 				
