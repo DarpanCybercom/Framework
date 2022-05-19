@@ -9,7 +9,7 @@ const ConfigFilePath = path.join(__dirname,'config',ConfigFileName);
 
 
 
-module.exports.addModule = async () => {
+module.exports.addAuth = async () => {
 
     console.log("File Upload Module Intializing.....");
     console.log("File Upload Module Intialized");

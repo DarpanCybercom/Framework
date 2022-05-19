@@ -10,7 +10,7 @@ module.exports.init = async (arg) => {
         
         console.log("Project Creating in "+ FolderName + " Folder....."); 
         
-        exec('git clone -b main --single-branch git@DarpanCybercom:DarpanCybercom/NodeFramework.git ' + FolderName, (error, stdout, stderr) => {
+        exec('git clone -b main --single-branch git@github.com:DarpanCybercom/Framework.git ' + FolderName, (error, stdout, stderr) => {
             if (error) {
               console.error(`exec error: ${error}`);
               return;
@@ -33,7 +33,7 @@ module.exports.init = async (arg) => {
     }else{
         console.log("Project Creating in Folder.....");
 
-        exec('git clone -b main --single-branch git@DarpanCybercom:DarpanCybercom/NodeFramework.git .', (error, stdout, stderr) => {
+        exec('git clone -b main --single-branch git@github.com:DarpanCybercom/Framework.git .', (error, stdout, stderr) => {
             if (error) {
               console.error(`exec error: ${error}`);
               return;

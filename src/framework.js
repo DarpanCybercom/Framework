@@ -19,14 +19,11 @@ const warning = chalk.yellow; */
 
 
 /* Custom Command Import #START# */
-
-/* const { addModule } = require('./addModule');
-const { addAuth } = require('./addAuth');
-const { addModel } = require('./addModel');
-*/
- 
 const { help } = require('./help');
 const { init } = require('./init'); 
+const { addModule } = require('./addModule');
+const { addAuth } = require('./addAuth');
+const { addModel } = require('./addModel');
 const { addFileUpload } = require('./addFileUpload');
 
 /* Custom Command Import #END# */
