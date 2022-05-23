@@ -81,14 +81,15 @@ var renametemplateFiles = async (ModulePath , ModuleName) => {
 
 module.exports.addModule = async (arg) => {
 
-    console.log("File Upload Module Intializing.....");
-    console.log("File Upload Module Intialized");
-
+    console.log("Module Intializing.....");
+    
     var IsFileAvailable = CheckConfigFile();
 
     if(!IsFileAvailable){
 
         console.log("Config File Not Found");
+        console.log("Please Run 'npm run init' First In Your Project");
+        console.log("then try again!!");
         return;
     }
 
@@ -97,7 +98,6 @@ module.exports.addModule = async (arg) => {
     var configFile = fs.readFileSync(ConfigFilePath);
     var config = JSON.parse(configFile);
 
-    console.log("Config File Loaded");
     console.log(config.AppConfig.apiFolderName); 
 
     var apiFolderPath = path.join(config.AppConfig.apiFolderName);
@@ -106,8 +106,7 @@ module.exports.addModule = async (arg) => {
     var apiFolderExists = fs.existsSync(apiFolderPath);
 
     if(!apiFolderExists){
-        console.log("API Folder Not Found");
-        return;
+        fs.mkdirSync(apiFolderPath);
     }
 
     console.log("API Folder Found");
