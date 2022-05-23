@@ -130,31 +130,26 @@ module.exports.addModule = async (arg) => {
         
         fs.access(fileUploadFolderPath, fs.constants.F_OK, (err) => {
             if (err) {
-                fs.mkdir(fileUploadFolderPath, async (err2) => {
-                    if (err2) {
-                        console.log(err2);
-                    } else {
-                        exec('git clone -b new_module --single-branch git@github.com:DarpanCybercom/Framework.git ' + moduleName, (error, stdout, stderr) => {
-                            if (error) {
-                              console.error(`exec error: ${error}`);
-                              return;
-                            }               
-                            console.log('Module Added');
-                          });                       
-                    }
-                });
+                exec('git clone -b new_module --single-branch git@github.com:DarpanCybercom/Framework.git ' + fileUploadFolderPath, (error, stdout, stderr) => {
+                    if (error) {
+                        console.error(`exec error: ${error}`);
+                        return;
+                    }               
+
+                    renametemplateFiles(fileUploadFolderPath,moduleName);
+                    console.log('Module Added');
+                    });                       
                 return;
             }
 
-            console.log("Folder Found");
-
-            exec('git clone -b new_module --single-branch git@github.com:DarpanCybercom/Framework.git ' + moduleName, (error, stdout, stderr) => {
+            exec('git clone -b new_module --single-branch git@github.com:DarpanCybercom/Framework.git ' + fileUploadFolderPath, (error, stdout, stderr) => {
                 if (error) {
-                  console.error(`exec error: ${error}`);
-                  return;
+                    console.error(`exec error: ${error}`);
+                    return;
                 }               
+                renametemplateFiles(fileUploadFolderPath,moduleName);
                 console.log('Module Added');
-              });
+                });                       
             return;
         });
 
