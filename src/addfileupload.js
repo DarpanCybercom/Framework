@@ -40,6 +40,28 @@ var propmtForModuleOptions = async (ModuleNames) => {
     return  answers.ModuleName.toLowerCase();
 }
 
+var propmtForRouteOptions = async (ModuleNames) => {   
+    
+    const questions = [];
+    var answers;
+
+    console.log(ModuleNames);
+
+    questions.push({
+            type : 'list',
+            name : 'ModuleName',
+            message : 'Please Enter Module Name?',
+            choices : ModuleNames
+    });
+        
+    do {
+       answers = await inquirer.prompt(questions);
+    } while (answers.ModuleName == "");
+
+
+    return  answers.ModuleName.toLowerCase();
+}
+
 
 
 
@@ -80,6 +102,7 @@ module.exports.addFileUpload = async () => {
     console.log("Modules Found");
 
     var ModuleNames = [];
+    var RoutePath = [];
 
     Modules.forEach(function(Module){
         ModuleNames.push(Module);
@@ -105,8 +128,16 @@ module.exports.addFileUpload = async () => {
 
         var RouteFile = JSON.parse(fs.readFileSync(RouteFilePath));
 
-        console.log("Route File : " + RouteFile);
+        RouteFile.forEach(route => {
+
+                if (route.method == "post") {
+                    RoutePath.push(route.path);
+                    console.log(route.path);
+                }
+        });
     });
+
+
     
     
     
