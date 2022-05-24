@@ -129,7 +129,7 @@ module.exports.addModule = async (arg) => {
         
         fs.access(fileUploadFolderPath, fs.constants.F_OK, (err) => {
             if (err) {
-                exec('git clone -b new_module --single-branch git@github.com:DarpanCybercom/Framework.git ' + fileUploadFolderPath, (error, stdout, stderr) => {
+                exec('git clone -b new_module --single-branch https://github.com/DarpanCybercom/Framework.git ' + fileUploadFolderPath, (error, stdout, stderr) => {
                     if (error) {
                         console.error(`exec error: ${error}`);
                         return;
@@ -141,7 +141,7 @@ module.exports.addModule = async (arg) => {
                 return;
             }
 
-            exec('git clone -b new_module --single-branch git@github.com:DarpanCybercom/Framework.git ' + fileUploadFolderPath, (error, stdout, stderr) => {
+            exec('git clone -b new_module --single-branch https://github.com/DarpanCybercom/Framework.git ' + fileUploadFolderPath, (error, stdout, stderr) => {
                 if (error) {
                     console.error(`exec error: ${error}`);
                     return;
