@@ -96,10 +96,13 @@ framework.modules.forEach((element) => {
 
 		if(ModulePathMethod == 'post')
 		{	
-			if(routesPath.fileupload)
+			if(routesPath.fileUpload)
 			{	
 
-				var FileUploadMiddleware = await  framework.functions.globalFunctions.file_validation.validation(routesPath.fileupload);
+				var x = [];
+				x.push(upload.single(routesPath.fileUpload));
+
+				var FileUploadMiddleware = await  framework.functions.globalFunctions.file_validation.validation(x);
 
 				mid.push(FileUploadMiddleware);
 				
