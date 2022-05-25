@@ -20,7 +20,7 @@ The Node JS Custom Framework's Custom Commands
             Folder.
             
             ```
-            framework --init [FolderName]            || framework -i [FolderName] 
+            framework --init [FolderName]  ||  framework -i [FolderName] 
             ```
 
     2) Add Module 

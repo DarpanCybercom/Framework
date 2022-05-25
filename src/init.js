@@ -1,54 +1,57 @@
-const { exec }  = require('child_process');
+const { execSync }  = require('child_process');
+const TerminalLog = require('./colors');
 
-module.exports.init = async (arg) => {
 
-    console.log("Project Intializing.....");
+var execute = async (command) => {
+  try {
+    exec(command, (error, stdout, stderr) => {
+      if (error) {
+        TerminalLog.error(`error: ${error.message}`);
+        return;
+      }
+      TerminalLog.debug(`stdout: ${stdout}`);
+      TerminalLog.debug(`stderr: ${stderr}`);
+    });
+  } catch (err) {
+    TerminalLog.error(err);
+  }
+}
 
-    let FolderName = arg;
-    
-    if(FolderName){
-        
-        console.log("Project Creating in "+ FolderName + " Folder....."); 
-        
-        exec('git clone -b main --single-branch https://github.com/DarpanCybercom/Framework.git ' + FolderName, (error, stdout, stderr) => {
-            if (error) {
-              console.error(`exec error: ${error}`);
-              return;
-            }
 
-            exec('npm i', (error, stdout, stderr) => {
-                if (error) {
-                  console.error(`exec error: ${error}`);
-                  return;
-                }
+module.exports.init =  async (arg) => {
 
-                console.log('NPM Pacakages Installing');
-              });
-            
-            console.log('Project Intialied');
-            
-            
-          });
+  TerminalLog.info("Initializing Project.....");
+  
+  try {
+      var FolderName = arg;
+      
+      if(FolderName == undefined) FolderName = ".";
+      
+      //TerminalLog.debug("Creating Folder: " + FolderName);
 
-      }else{
-        console.log("Project Creating in Folder.....");
+      var gitCommand = "git clone -b main --single-branch https://github.com/DarpanCybercom/Framework.git " + FolderName;
 
-        exec('git clone -b main --single-branch https://github.com/DarpanCybercom/Framework.git .', (error, stdout, stderr) => {
-            if (error) {
-              console.error(`exec error: ${error}`);
-              return;
-            }
+      //TerminalLog.debug("Executing Command: " + gitCommand);
 
-            exec('npm i', (error, stdout, stderr) => {
-                if (error) {
-                  console.error(`exec error: ${error}`);
-                  return;
-                }
 
-                console.log('NPM Pacakages Installing');
-              });
+      execSync(gitCommand, (error, stdout, stderr) => {
+        if (error) {
+          
+          //New Error Handling 
+          if(FolderName == ".") FolderName = "Current";
+          TerminalLog.error( "Error: "+FolderName+" Folder Must Be Empty.");
+          return;
+        }
+        //TerminalLog.debug(`stdout: ${stdout}`);
+        //TerminalLog.debug(`stderr: ${stderr}`);
+          
+      
+      });
+      
+      TerminalLog.success("Project Initialized Successfully");
+     
 
-              console.log('Project Intialied');
-          });
-    }    
+    } catch (err) {
+      TerminalLog.error(err);
+    }
 };
