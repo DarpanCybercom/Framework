@@ -108,8 +108,8 @@ var propmtForValidation = async () => {
 
 
         validation.max_size = answers.max_size || null;
-        validation.allowed_types = answers.allowed_types || null;
-        validation.allowed_extensions = answers.allowed_extensions || null;
+        validation.allowed_types = [answers.allowed_types] || null;
+        validation.allowed_extensions = [answers.allowed_extensions] || null;
         validation.file_count = answers.file_count || null;
         validation.required = answers.required || null;
         validation.upload_path = answers.upload_path || null;
@@ -304,7 +304,7 @@ module.exports.addFileUpload = async () => {
     var CustomMiddleware = await promptForCustomMiddleware();
 
     var FileUpload = {
-        validation : validation,
+        validations : validation,
         fields : Fields,
         customMiddleware : CustomMiddleware
     }
