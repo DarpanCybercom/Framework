@@ -7,7 +7,8 @@ const appConfig = require("../config/appConfig.json");
 
 const globalServices = require('./globals/globalServices');
 const globalFunctions = require('./globals/globalFunction');
-const coreMiddleware = require('./globals/globalMiddleware');
+const globalMiddleware = require('./globals/globalMiddleware');
+const coreMiddleware  = require('./globals/coreMiddleware');
 const moduleViseServices = require('./globals/moduleViseServices');
 const moduleViseFunctions = require('./globals/moduleViseFunctions'); 
 
@@ -50,12 +51,23 @@ if(Object.keys(globalFunctions.globalFunctions).length === 0)
 
 
 /* Set Core Middleware */
-if(Object.keys(coreMiddleware.globalCoreMiddleware).length === 0)
+if(Object.keys(coreMiddleware.coreMiddleware).length === 0)
 {
-	console.log(chalk.yellow("Global Core Middleware Not Available!"));
+	console.log(chalk.yellow("Core Middleware Not Available!"));
 }else{
 	framework.middleware = coreMiddleware;
 }
+
+
+/* Set Global MiddleWare Services */
+
+if(Object.keys(globalMiddleware.globalMiddleware).length === 0)
+{
+	console.log(chalk.yellow("Global Middleware Not Available!"));
+}else{
+	framework.globalmiddleware = globalMiddleware;
+}
+
 
 //Set Module Vise Service
 if(Object.keys(moduleViseServices.moduleServices).length === 0)

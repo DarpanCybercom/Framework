@@ -1,4 +1,4 @@
-import {exec} from 'child_process';
+import exec from 'child_process';
 import fs     from "fs";
 import chalk  from "chalk";
 import path   from "path";
@@ -416,16 +416,6 @@ await checkForConfigFileAvailability.then(async (questionArray) =>{
         askFortheDetails(questionArray);
     }
 
-    getCustomCommand.then((command) => {
-        
-        if(Object.keys(command).length > 0)
-        {
-            addCustomCommand(command);
-        }
-    }).then(()=>{
-        exec("npm link");
-    })
-   
     await console.log(success("Post Installing Setup Ending................"));
 });
 })();

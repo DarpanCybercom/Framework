@@ -3,7 +3,7 @@ const path = require("path");
 const chalk = require('colors/safe')
 
 const MiddlewareFolderName = 'middleware';
-const globalCoreMiddlewarePath =  path.join(CorePath,MiddlewareFolderName);
+const globalCoreMiddlewarePath =  path.join(CorePath,'core',MiddlewareFolderName);
 
 
 
@@ -32,7 +32,7 @@ if (fs.existsSync(globalCoreMiddlewarePath)) {
 }
 
 
-exports.globalMiddleware = coremiddlewares;
+exports.coreMiddleware = coremiddlewares;
 
 
 
