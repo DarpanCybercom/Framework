@@ -1,9 +1,26 @@
-ProductFunction = function() {
+/* 
 
-    this.users = function() {
-      console.log("Global Functions")
-    };
-    
-  };
+Auther : Darpan Vadher
+
+******************Middleware Example**********************
+
+
+exports.[Function Name] = async (Parameters) =>{
+
+    ...Your Code
+
+    return; //Return Value    
+}
+
+
+
+*/
+
+
+exports.sampleFunction= async ()=>{
+
+  console.log("Sample Function");
   
-  exports.productfunction = ProductFunction;
+  return "Sample Function";
+
+}

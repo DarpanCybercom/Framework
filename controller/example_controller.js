@@ -1,5 +1,3 @@
-const chalk = require("chalk");
-
 /* 
 Author : Darpan Vadher
 
@@ -22,20 +20,28 @@ await framework.db.[Table Name].[Database Opration Function];
 
 ***********************************************************
 
-**********Call Database Table for Opration*****************
 
-Global Variable : framework
-Database Variable : db
-Table Name : product
-Function Name : create()
-
-await framework.db.[Table Name].[Database Opration Function];
-
-***********************************************************
+*******************Function Example**********************
+Gobal Variable : framework
+Function Variable : functions
+Type of Function : globalFunction || moduleFunction
+Function File Name : [Function File Name]
+Function Name : [Function Name]
 
 
+await framework.functions.[Type of Function].[Function File Name].[Function Name];
 
 
+
+*******************Service Example**********************
+Gobal Variable : framework
+Services Variable : services
+Type of Services : globalServices || moduleServices
+Service File Name : [Service File Name]
+Service Function Name : [Service Function Name]
+
+
+await framework.services.[Type of Services].[Service File Name].[Service Function Name]; 
 
 
 ***********************************************************
@@ -44,16 +50,36 @@ await framework.db.[Table Name].[Database Opration Function];
 
 
 
+exports.get = async (req, res, next) => {
+  let response = {
+      status: "Success",
+      message: "Sample Details",
+  };
+  res.status(200).json({message:"Success",response});
+};
+
+
+exports.add = async (req, res, next) => {
 
 
 
+res.status(200).json({status:"Success",message : "Data Added"});
 
-exports.getproduct = async (req, res, next) => {
-  console.log(chalk.yellow("get product is calling"));
-  
-  const response = await framework.services.Product.productservice.getproduct();
-  
- res.status(200).json(response);
 
 };
+
+exports.update = async (req, res, next) => {
+    
+    res.status(200).json({status:"Success",message : "Data Updated"}); 
+};
+
+
+
+exports.delete = async (req, res, next) => {
+res.status(200).json({status:"Success",message:"Data Deleted"});
+};
+
+
+
+
 

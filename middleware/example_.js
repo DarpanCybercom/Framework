@@ -1,10 +1,25 @@
+/* 
 
-exports.validate=(req,res,next)=>{
-    console.log("this is validate");
-    next()
+Auther : Darpan Vadher
+
+******************Middleware Example**********************
+
+
+exports.[MiddleWare Function Name] = async (req,res,next) =>{
+
+    ...Your Code
+
+    next(); //Call Next Middleware    
 }
 
-exports.check=(req,res,next)=>{
-    console.log("this is check");
-    next()
+
+
+*/
+
+
+exports.sampleMiddleWare=(req,res,next)=>{
+
+    console.log("Sample Middleware");
+    next();
+ 
 }

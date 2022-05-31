@@ -1,1 +1,38 @@
-[]
+[
+    {
+        "method": "get",
+        "path": "/",
+        "controller": "example_controller.get",
+        "middlewares": [],
+        "userRole": [],
+        "global": true,
+        "protected": false
+    },
+    {
+        "method": "post",
+        "path": "/add",
+        "controller": "example_controller.add",
+        "middlewares": ["example_.sampleMiddleWare"],
+        "userRole": [],
+        "global": false,
+        "protected": false
+    },
+    {
+        "method": "put",
+        "path": "/update/:id",
+        "controller": "example_controller.update",
+        "middlewares": ["example_.sampleMiddleWare"],
+        "userRole": [],
+        "global": false,
+        "protected": false
+    },
+    {
+        "method": "post",
+        "path": "/delete/:id",
+        "controller": "example_controller.delete",
+        "middlewares": [],
+        "userRole": [],
+        "global": false,
+        "protected": false
+    }
+]
