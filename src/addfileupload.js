@@ -319,7 +319,7 @@ module.exports.addFileUpload = async () => {
 
     });
 
-    fs.writeFileSync(RouteFilePath, JSON.stringify(RouteFile, null, 2));
+    fs.writeFileSync(RouteFilePath, JSON.stringify([RouteFile], null, 2));
 
     console.log("File Upload Module Completed");
 };

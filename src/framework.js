@@ -3,20 +3,7 @@ const inquirer  = require('inquirer');
 const fs = require("fs");
 const path = require("path");
 const  { exec }   = require("child_process");
-/* 
-const fse = require('fs-extra');
-const chalk  = require("chalk");
- */
-
-
-/* Console Color Scheme  #START# */
-
-/* const success = chalk.green;
-const error = chalk.red;
-const warning = chalk.yellow; */
-
-/* Console Color Scheme #END# */
-
+const TerminalLog = require('./colors');
 
 /* Custom Command Import #START# */
 const { help } = require('./help');
@@ -35,8 +22,11 @@ var parseArgumentsIntoOptions =  async function (rawArgs){
         { 
             '--init': Boolean,
             '--help': Boolean,
+            '--withTable': Boolean,
             '-i' : '--init',
-            '-h' : '--help'
+            '-h' : '--help',
+            '-t' : '--withTable',
+
         },
         {
         argv : rawArgs.slice(2),
@@ -46,6 +36,7 @@ var parseArgumentsIntoOptions =  async function (rawArgs){
     return {
         freshInstall : args['--init'] || false,
         needHelp : args['--help'] || false,
+        withTable : args['--withTable'] || false,
         command : args._[0],
         commandArg: args._[1]
     }
@@ -58,15 +49,15 @@ var parseArgumentsIntoOptions =  async function (rawArgs){
 
 module.exports.cli = async (args) => {
 
-    
 
     let CustomCommand = await parseArgumentsIntoOptions(args);
+
     let Command = CustomCommand.command;
     let CommandOptions = CustomCommand.commandOptions;
     let CommandArg = CustomCommand.commandArg;
     
 
-    if (CustomCommand.freshInstall) {
+     if (CustomCommand.freshInstall) {
         
         let FolderName = Command;
         init(FolderName);     
@@ -82,7 +73,7 @@ module.exports.cli = async (args) => {
             switch (Command) {
 
                 case "addModule":
-                        addModule(CommandArg);
+                        addModule(CustomCommand.withTable,CommandArg);
                     break;
 
                 case "addAuth":
@@ -102,6 +93,6 @@ module.exports.cli = async (args) => {
                     break;
             }
         }
-    }   
+    }    
 };
     
