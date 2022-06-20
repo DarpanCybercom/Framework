@@ -1,0 +1,44 @@
+[
+    {
+        "method": "get",
+        "path": "/csrf",
+        "controller": "usercontroller.sendcsrf",
+        "middlewares": [],
+        "userRole": [],
+        "global": true,
+        "protected": false
+    },
+    {
+        "method": "post",
+        "path": "/login",
+        "controller": "usercontroller.userlogin",
+        "middlewares": [
+            "authuser.loginValidate"
+        ],
+        "userRole": [],
+        "global": true,
+        "protected": false
+    },
+    {
+        "method": "post",
+        "path": "/register",
+        "controller": "usercontroller.userregister",
+        "middlewares": [
+            "authuser.registerValidate"
+        ],
+        "userRole": [],
+        "global": true,
+        "protected": false
+    },
+    {
+        "method": "post",
+        "path": "/refresh/:key",
+        "controller": "usercontroller.refreshAccessToken",
+        "middlewares": [
+            "authuser.Refreshvalidate"
+        ],
+        "userRole": [],
+        "global": true,
+        "protected": false
+    }
+]
