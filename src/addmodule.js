@@ -7,8 +7,11 @@ const TerminalLog = require('./colors');
 
 const ConfigFileName = "appConfig.json";
 const ConfigFilePath = path.join('config',ConfigFileName);      
+const Template = require('./constString');
 
-
+var ModelTemplate = Template.Model;
+var MigrationTemplate = Template.Migration;
+var SeederTemplate = Template.Seeder;
 
 
 
@@ -48,31 +51,11 @@ var renametemplateFiles = async (ModulePath , ModuleName,TableName,withTable) =>
     if(fs.existsSync(ModulePath))
     {   
         const ApiTemplateFolderFile = fs.readdirSync(ModulePath);
-
       
         ApiTemplateFolderFile.forEach(FileFolder => {
-
-            TerminalLog.debug("Table Name : " + TableName);
-
-            TerminalLog.debug("With Table : " + withTable);
-
+           
             if(FileFolder != 'route.json')
             {   
-                /* if(withTable == false && FileFolder == 'models' || FileFolder == 'migrations' || FileFolder == 'seeders')
-                {   
-                    TerminalLog.debug("File Folder : " + FileFolder);
-                    TerminalLog.debug('rmdir /s ' + path.join(ModulePath,FileFolder));
-                    execSync('rmdir /s "' + path.join(ModulePath,FileFolder) +'"', (error, stdout, stderr) => {
-                        if (error) {
-                            TerminalLog.error(`exec error: ${error}`);
-                            return;
-                        }
-                });
-
-                }else{
-                    TerminalLog.debug("Renaming File : " + FileFolder);
-                } */
-                
                 const FolderFolderFile = fs.readdirSync(path.join(ModulePath,FileFolder));
 
                 if(FolderFolderFile.length > 0)
@@ -158,6 +141,156 @@ var askForTable = async () => {
 }
 
 
+var createModel = async (ModulePath,ModuleName,modelName) => {
+    
+    TerminalLog.debug("Creating Model");
+
+    if(fs.existsSync(ModulePath))
+    {
+        TerminalLog.debug("Module Path : " + ModulePath);
+        var ModelPath = path.join(ModulePath,'models');
+    var MigrationPath = path.join(ModulePath,'migrations');
+    var SeederPath = path.join(ModulePath,'seeders');
+
+    var ModelPathExists = fs.existsSync(ModelPath);
+
+    if(!ModelPathExists){
+        fs.mkdirSync(ModelPath);
+
+        var ModelFilePath = path.join(ModelPath,modelName + '.js');
+
+        var ModelFileExists = fs.existsSync(ModelFilePath);
+
+        if(ModelFileExists){
+
+            TerminalLog.error("Model Already Exists");
+            return;
+        }
+
+        ModelTemplate = ModelTemplate.replaceAll('example',modelName);
+
+        fs.writeFileSync(ModelFilePath,ModelTemplate);
+
+        TerminalLog.info("Model Created");
+    }else {
+
+        var ModelFilePath = path.join(ModelPath,modelName + '.js');
+
+        var ModelFileExists = fs.existsSync(ModelFilePath);
+
+        if(ModelFileExists){
+
+            TerminalLog.error("Model Already Exists");
+            return;
+        }
+
+        ModelTemplate = ModelTemplate.replaceAll('example',modelName);
+
+        fs.writeFileSync(ModelFilePath,ModelTemplate);
+
+        TerminalLog.info("Model Created");
+    }
+
+
+    var MigrationPathExists = fs.existsSync(MigrationPath);
+    
+    if(!MigrationPathExists){
+
+        TerminalLog.debug("Migration Creation Started");
+    
+        fs.mkdirSync(MigrationPath);
+
+        var MigrationFilePath = path.join(MigrationPath, Date.now() + '_create_' + modelName + '.js');
+    
+        var MigrationFileExists = fs.existsSync(MigrationFilePath);
+
+        if(MigrationFileExists){
+                
+                TerminalLog.error("Migration Already Exists");
+                return;
+        }
+
+        MigrationTemplate = MigrationTemplate.replaceAll('example',modelName);
+
+        fs.writeFileSync(MigrationFilePath,MigrationTemplate);
+
+        TerminalLog.info("Migration Created");
+
+
+    }else{
+        TerminalLog.debug("Migration Creation Started");
+
+       
+        var MigrationFilePath = path.join(MigrationPath, Date.now() + '_create_' + modelName + '.js');
+    
+        var MigrationFileExists = fs.existsSync(MigrationFilePath);
+
+        if(MigrationFileExists){
+                
+                TerminalLog.error("Migration Already Exists");
+                return;
+        }
+
+        MigrationTemplate = MigrationTemplate.replaceAll('example',modelName);
+
+        fs.writeFileSync(MigrationFilePath,MigrationTemplate);
+
+        TerminalLog.info("Migration Created");
+    }
+
+    var SeederPathExists = fs.existsSync(SeederPath);
+
+    if(!SeederPathExists){
+
+        TerminalLog.debug("Seeder Creation Started");
+
+        fs.mkdirSync(SeederPath);
+
+        var SeederFilePath = path.join(SeederPath, Date.now() + '_demo_' + modelName + '.js');
+
+        var SeederFileExists = fs.existsSync(SeederFilePath);
+
+        if(SeederFileExists){
+
+            TerminalLog.error("Seeder Already Exists");
+            return;
+
+        }
+
+        SeederTemplate = SeederTemplate.replaceAll('example',modelName);
+
+        fs.writeFileSync(SeederFilePath,SeederTemplate);
+
+        TerminalLog.info("Seeder Created");
+
+    }else{
+
+        TerminalLog.debug("Seeder Creation Started");
+
+
+        var SeederFilePath = path.join(SeederPath, Date.now() + '_demo_' + modelName + '.js');
+
+        var SeederFileExists = fs.existsSync(SeederFilePath);
+
+        if(SeederFileExists){
+
+            TerminalLog.error("Seeder Already Exists");
+            return;
+
+        }
+
+        SeederTemplate = SeederTemplate.replaceAll('example',modelName);
+
+        fs.writeFileSync(SeederFilePath,SeederTemplate);
+
+        TerminalLog.info("Seeder Created");
+
+    }
+
+    }
+
+}
+
 
 
 module.exports.addModule = async (withTable,arg) => {
@@ -222,26 +355,10 @@ module.exports.addModule = async (withTable,arg) => {
         tableName = "";
     }
 
-
-    TerminalLog.debug("Module Name : " + moduleName);
-    TerminalLog.debug("Table Name : " + tableName);
-    TerminalLog.debug("With Table : " + withTable);
-
-    
     var fileUploadFolderPath = path.join(apiFolderPath,moduleName);
 
 
-
-
-
-
-
-
-
-
-    fs.access(fileUploadFolderPath, fs.constants.F_OK, (err) => {
-       
-       
+    fs.access(fileUploadFolderPath, fs.constants.F_OK, (err) => { 
         if (err) {
             execSync('git clone -b new_module --single-branch https://github.com/DarpanCybercom/Framework.git ' + fileUploadFolderPath, (error, stdout, stderr) => {
                 if (error) {
@@ -250,7 +367,11 @@ module.exports.addModule = async (withTable,arg) => {
                 }               
                 });             
                 renametemplateFiles(fileUploadFolderPath,moduleName,tableName,withTable);
-                console.log('Module Added');          
+
+                TerminalLog.info("Model Adding Started");
+                createModel(fileUploadFolderPath,moduleName,tableName);
+                TerminalLog.info("Model Added Successfully");
+                TerminalLog.info('Module Added Successfully');      
             return;
         }
 
@@ -261,7 +382,10 @@ module.exports.addModule = async (withTable,arg) => {
             }               
             });   
             renametemplateFiles(fileUploadFolderPath,moduleName,tableName,withTable);
-            console.log('Module Added');                    
+            TerminalLog.info("Model Adding Started");
+                createModel(fileUploadFolderPath,moduleName,tableName);
+                TerminalLog.info("Model Added Successfully");
+                TerminalLog.info('Module Added Successfully');                    
         return;
     });
 
