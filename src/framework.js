@@ -12,7 +12,7 @@ const { addModule } = require('./addModule');
 const { addAuth } = require('./addAuth');
 const { addModel } = require('./addModel');
 const { addFileUpload } = require('./addFileUpload');
-
+const { addCronJob } = require('./cronJob');
 /* Custom Command Import #END# */
 
 
@@ -88,6 +88,9 @@ module.exports.cli = async (args) => {
                         addFileUpload();
                     break;
                     
+                case "addCronJob":
+                    addCronJob();
+                    break;
                 default:
                         help();
                     break;
