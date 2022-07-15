@@ -49,7 +49,7 @@ app.use(Routes);
 		readline.question(
 					chalk.yellow('Foloowing Migrartion Are Pending Are you want to migrate ? (y/n)' ),
 					async (answer) => {	
-							if(answer === 'y' || answer === 'Y' )
+						if(answer === 'y' || answer === 'Y' )
 							{
 								await migration.up();
 								getListen(PORT);
